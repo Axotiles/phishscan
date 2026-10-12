@@ -1,0 +1,32 @@
+Return-Path: <bounce@mailer-xk29.example.net>
+Received: from mail.mailer-xk29.example.net (mail.mailer-xk29.example.net [203.0.113.45])
+	by mx.example.org with ESMTP id abc123
+	for <victim@example.org>; Mon, 12 Oct 2026 09:14:02 -0400
+Authentication-Results: mx.example.org;
+	spf=fail smtp.mailfrom=mailer-xk29.example.net;
+	dkim=none;
+	dmarc=fail header.from=paypa1-secure.example.com
+From: "PayPal Support" <support@paypa1-secure.example.com>
+Reply-To: <helpdesk@free-mail-inbox.example.org>
+To: victim@example.org
+Subject: Urgent: Your account has been limited
+Date: Mon, 12 Oct 2026 09:13:55 -0400
+Message-ID: <fake-1234@mailer-xk29.example.net>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="BOUNDARY"
+
+--BOUNDARY
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Dear customer, we noticed unusual activity. Verify now:</p>
+<p><a href="http://paypa1-secure.example.com/login">https://www.paypal.com/signin</a></p>
+<p>Or visit http://bit.ly/fake-example-link within 24 hours.</p>
+</body></html>
+--BOUNDARY
+Content-Type: application/octet-stream; name="invoice.pdf.exe"
+Content-Disposition: attachment; filename="invoice.pdf.exe"
+Content-Transfer-Encoding: base64
+
+VGhpcyBpcyBhIGhhcm1sZXNzIHRlc3QgZmlsZSwgbm90IG1hbHdhcmUu
+--BOUNDARY--
