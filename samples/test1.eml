@@ -21,7 +21,7 @@ Content-Type: text/html; charset="utf-8"
 <html><body>
 <p>Dear customer, we noticed unusual activity. Verify now:</p>
 <p><a href="http://paypa1-secure.example.com/login">https://www.paypal.com/signin</a></p>
-<p>Or visit http://bit.ly/fake-example-link within 24 hours.</p>
+<p>Or <a href="http://bit.ly/fake-example-link">click here</a> within 24 hours.</p>
 </body></html>
 --BOUNDARY
 Content-Type: application/octet-stream; name="invoice.pdf.exe"
