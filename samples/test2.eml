@@ -1,0 +1,22 @@
+Return-Path: <orders@arnazon-orders.com>
+Received: from smtp.arnazon-orders.com (smtp.arnazon-orders.com [198.51.100.23])
+	by mx.example.org with ESMTP id def456
+	for <victim@example.org>; Mon, 12 Oct 2026 10:02:41 -0400
+Authentication-Results: mx.example.org;
+	spf=softfail smtp.mailfrom=arnazon-orders.com;
+	dkim=none;
+	dmarc=none
+From: "Amazon Orders" <orders@arnazon-orders.com>
+To: victim@example.org
+Subject: Your order could not be delivered
+Date: Mon, 12 Oct 2026 10:02:30 -0400
+Message-ID: <fake-5678@arnazon-orders.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>We could not deliver your package. Confirm your address:</p>
+<p><a href="http://paypal.com.account-verify.net/login">Confirm address</a></p>
+<p>Or sign in to your Microsoft account: <a href="http://micr0soft-support.com/signin">Sign in</a></p>
+<p>Real help page: <a href="https://www.amazon.com/help">https://www.amazon.com/help</a></p>
+</body></html>

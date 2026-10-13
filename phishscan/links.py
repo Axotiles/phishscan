@@ -26,6 +26,16 @@ SHORTENERS = {
 }
 
 # Does this visible text look like a URL or a domain name?
+# Email-marketing services that wrap every link in a click-tracking redirect.
+# A "text says my-site.com, link goes to a tracker" mismatch from one of these is
+# normal for newsletters, but only trusted when the sender passed DMARC.
+TRACKING_DOMAINS = {
+    "sendconstant.email", "constantcontact.com", "rs6.net", "list-manage.com",
+    "mailchimp.com", "sendgrid.net", "mandrillapp.com", "mailgun.org",
+    "klclick1.com", "klaviyomail.com", "hubspotlinks.com", "exct.net",
+    "createsend.com", "sendibt3.com", "mjt.lu", "sparkpostmail.com",
+}
+
 LOOKS_LIKE_URL = re.compile(
     r"^(https?://|www\.)|^[\w-]+(\.[\w-]+)*\.[a-z]{2,}(/|$)", re.IGNORECASE
 )
@@ -66,12 +76,29 @@ def extract_links(msg):
     return links
 
 
-def check_links(links):
-    """Turn the raw links into a list of findings (check / severity / detail)."""
+def check_links(links, trusted_sender=False):
+    """Turn the raw links into a list of findings (check / severity / detail).
+
+    trusted_sender=True means the email passed DMARC (it really came from the domain
+    it claims), so click-tracking redirects are treated as normal newsletter behavior.
+    """
     findings = []
     for link in links:
         # 1. Visible text claims one site, the link goes to another.
         if link["text_domain"] and link["text_domain"] != link["href_domain"]:
+            if trusted_sender and link["href_domain"] in TRACKING_DOMAINS:
+                findings.append(
+                    {
+                        "check": "tracked_link_redirect",
+                        "severity": "low",
+                        "detail": (
+                            f"Link shows '{defang(link['text'])}' but goes through the "
+                            f"email-service tracker {defang(link['href_domain'])} "
+                            "(sender passed DMARC)"
+                        ),
+                    }
+                )
+                continue
             findings.append(
                 {
                     "check": "link_text_mismatch",

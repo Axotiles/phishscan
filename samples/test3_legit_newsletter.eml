@@ -1,0 +1,23 @@
+Return-Path: <0102abcdef-bounce@amazonses.com>
+Received: from a1-23.smtp-out.amazonses.com (a1-23.smtp-out.amazonses.com [54.240.1.23])
+	by mx.example.org with ESMTPS id ghi789
+	for <reader@example.org>; Mon, 12 Oct 2026 11:00:00 -0400
+Authentication-Results: mx.example.org;
+	spf=pass smtp.mailfrom=amazonses.com;
+	dkim=pass header.d=maplehillwinery.com;
+	dmarc=pass header.from=maplehillwinery.com
+From: "Maple Hill Winery" <news@maplehillwinery.com>
+To: reader@example.org
+Subject: Fall is in the air
+Date: Mon, 12 Oct 2026 10:59:50 -0400
+Message-ID: <fake-9999@maplehillwinery.com>
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Join us for the harvest festival this weekend.</p>
+<p><a href="https://www.sendconstant.email/l/abc123/def456">www.maplehillwinery.com</a></p>
+<p><a href="https://www.sendconstant.email/l/abc123/ghi789">Reserve a tasting</a></p>
+<img src="https://www.google-analytics.com/collect?v=1&t=event&ea=open">
+<p><a href="https://www.sendconstant.email/unsubscribe/xyz">Unsubscribe</a></p>
+</body></html>
