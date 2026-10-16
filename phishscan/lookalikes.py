@@ -44,6 +44,21 @@ BRANDS = {
     "wellsfargo": {"wellsfargo.com"},
     "bankofamerica": {"bankofamerica.com"},
     "fedex": {"fedex.com"},
+    # Added after testing on real phishing samples (common impersonation targets):
+    "mcafee": {"mcafee.com"},
+    "norton": {"norton.com", "nortonlifelock.com"},
+    "totalav": {"totalav.com"},
+    "trustwallet": {"trustwallet.com"},
+    "coinbase": {"coinbase.com"},
+    "metamask": {"metamask.io"},
+    "binance": {"binance.com"},
+    "mercadopago": {"mercadopago.com", "mercadopago.com.br", "mercadopago.com.ar",
+                    "mercadolibre.com", "mercadolivre.com.br"},
+    "caixa": {"caixa.gov.br"},
+    "chase": {"chase.com", "jpmorganchase.com", "jpmorgan.com"},
+    "ups": {"ups.com"},
+    "usps": {"usps.com"},
+    "dhl": {"dhl.com", "dhl.de"},
 }
 LEGIT_DOMAINS = set().union(*BRANDS.values())
 
@@ -58,8 +73,12 @@ def normalize(label):
 
 
 def _imitates(text, brand):
-    """True if the text uses the brand name as a word or at the start."""
-    return brand in text.split("-") or text.startswith(brand)
+    """True if the text uses the brand name as a whole word, or (for names of 5+ letters) at the start.
+
+    Very short brands (ups, dhl, usps) only match as a whole word, otherwise 'upstream.com'
+    would look like an impersonation of UPS.
+    """
+    return brand in text.split("-") or (len(brand) >= 5 and text.startswith(brand))
 
 
 def brand_match(label, brand):

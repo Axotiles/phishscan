@@ -10,11 +10,19 @@ import json
 from collections import Counter
 from urllib.parse import urlparse
 
-from .checks import check_attachments, check_authentication, check_sender, check_urgency
+from .checks import (
+    check_attachments,
+    check_authentication,
+    check_scam_language,
+    check_sender,
+    check_sender_address,
+    check_urgency,
+)
 from .links import check_links, extract_links
 from .lookalikes import check_lookalikes
 from .parser import analyze, defang, get_auth_results, load_eml
 from .scoring import dedupe, score
+from .urlchecks import check_urls
 
 
 def run_all(path, use_vt=False):
@@ -24,6 +32,9 @@ def run_all(path, use_vt=False):
     findings = []
     findings += check_authentication(msg)
     findings += check_sender(msg)
+    findings += check_sender_address(msg)
+    findings += check_scam_language(msg)
+    findings += check_urls(msg)
     findings += check_urgency(msg)
     findings += check_attachments(msg)
     trusted = get_auth_results(msg)["dmarc"] == "pass"  # sender is who they claim to be

@@ -23,6 +23,7 @@ _extract = tldextract.TLDExtract(suffix_list_urls=())
 SHORTENERS = {
     "bit.ly", "tinyurl.com", "t.co", "goo.gl", "ow.ly",
     "is.gd", "buff.ly", "rebrand.ly", "cutt.ly",
+    "goo.su", "shorturl.at", "tiny.cc", "rb.gy", "t.ly", "v.gd",
 }
 
 # Does this visible text look like a URL or a domain name?
